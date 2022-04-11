@@ -1,9 +1,11 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const config = require('config');
 
-mongoose.connect('mongodb+srv://kevin:Abcd123@cluster0.yery4.mongodb.net/chatApp?retryWrites=true&w=majority', {
+const db = config.get('db');
+mongoose.connect(db, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
-  .then(() => console.log(`Connected to successfully...`));
+  .then(() => console.log(`Connected to ${db} successfully...`));
 
 exports.mongoose = mongoose;
