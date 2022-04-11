@@ -1,0 +1,61 @@
+.modalWrapper{
+    width:100%
+}
+
+
+
+.modalSignupBtn{
+width:100% !important;
+color:grey !important;
+border:solid 2px grey !important;
+border-radius:30px !important
+}
+
+.modalSignupBtn:hover{
+    background:transparent !important;
+   color:grey;
+    
+}
+
+
+.modalNextBtn:hover{
+      background-color:rgba(0,0,0,0.03) !important;
+   
+
+}
+.modalConfirmWrapper{
+     margin-left:4px;
+    
+
+}
+ .modalResendLnk{
+    margin-left:4px
+}
+
+.modalConfirmWrapper h3{
+    margin-top:0px;
+     margin-bottom:0px;
+     font-size:15px;
+
+}
+
+.modalConfirmWrapper p{
+      font-size:10px;
+      margin:0px;
+        margin-bottom:15px;
+}
+.modalResendLnk{
+       margin-top:10px
+    }
+
+.modalResendLnk a{
+     font-size:10px;
+  
+
+}
+
+.modalSubmitBtn{
+    background-color:#2E69FF !important;
+    color: white !important;
+    margin-left: 10px !important;
+}

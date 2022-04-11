@@ -1,0 +1,10 @@
+.loginBottom{
+    display:flex;
+    align-items:center;
+    justify-content:space-between
+}
+
+.loginBottom div a {
+    font-size:12px;
+    color:grey
+}
