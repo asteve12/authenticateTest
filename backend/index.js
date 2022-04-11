@@ -6,12 +6,14 @@ const chatRoutes = require('./routes/chats');
 const config = require('config');
 const compression = require('compression');
 const helmet = require('helmet');
+const cors = require('cors');
 
 const app = express();
 
 if (!config.get("jwtPrivatekey"))
   throw new Error('FATAL ERROR: jwt key is not defined');
 
+app.use(cors({ origin: '*', credentials: true }));
 app.use(parser.json({ limit: "50mb" }));
 app.use(parser.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 }));
 
