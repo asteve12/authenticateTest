@@ -1,0 +1,78 @@
+.MbAuthWrapper{
+    width:100%;
+    height:100vh;
+    display: flex;
+
+}
+.mbauthTopImgWrapper{
+    width:100%;
+    height:auto;
+    position:absolute;
+}
+
+.mbauthTopImg{
+    width:100%;
+    height:100%;
+    object-fit:cover
+}
+.mbauthContent{
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.mbauthLinkWrapper{
+    width:100%;
+    display:flex;
+    justify-content:space-between
+
+}
+
+.mbauthLinkWrapper a{
+    text-decoration: none;
+}
+.mbAuthLogin{
+    width:45%;
+    background:none !important;
+   
+    border-radius:15px
+}
+.mbAuthSignUp{
+      width:45%;
+        background:none !important;
+   
+    border-radius:15px
+
+}
+.mbauthDetails header h2{
+    text-align:center;
+    margin:0px;
+  color:white
+
+}
+.mbauthDetails header p{
+     text-align:center;
+     margin:0px;
+     margin-bottom:15px;
+       color:white
+
+}
+
+
+@media(max-width:700px){
+    .MbAuthWrapper{
+      
+        background-color:rgb(145, 162, 168)
+
+    }
+
+}
+
+@media(min-width:700px){
+       .MbAuthWrapper{
+        display:none
+
+    }
+
+}
