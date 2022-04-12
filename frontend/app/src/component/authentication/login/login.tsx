@@ -15,8 +15,8 @@ import {useFormik} from "formik"
 import  {loginUpUser} from "../../../redux/loginreducer"
 import {useSelector,useDispatch} from "react-redux"
 import { ThreeCircles } from 'react-loader-spinner';
-//styles
-import style from "./login.module.css"
+import { ErrorMsg, LoginBottom, ForgetPassLink } from './loginStyled';
+
 interface errorInterface{
   email?:string,
   password?:string
@@ -98,7 +98,7 @@ export default function BasicTextFields() {
           onBlur={formObj.handleBlur}
         />
         {formObj.errors.email && formObj.touched.email ? (
-          <div className={style.errorMsg}>{formObj.errors.email}</div>
+          <ErrorMsg>{formObj.errors.email}</ErrorMsg>
         ) : null}
         <FormControl
           sx={{ marginTop: 3, marginBottom: 3, width: '100%' }}
@@ -129,15 +129,13 @@ export default function BasicTextFields() {
           />
         </FormControl>
         {formObj.errors.password && formObj.touched.password ? (
-          <div className={style.errorMsg}>{formObj.errors.password}</div>
+          <ErrorMsg>{formObj.errors.password}</ErrorMsg>
         ) : null}
-        {login.errorMsg ? (
-          <div className={style.errorMsg}>{login.errorMsg}</div>
-        ) : null}
+        {login.errorMsg ? <ErrorMsg>{login.errorMsg}</ErrorMsg> : null}
 
-        <section className={style.loginBottom}>
+        <LoginBottom>
           <div>
-            <a href='#'>Forgot password?</a>
+            <ForgetPassLink to="/" >Forgot password?</ForgetPassLink>
           </div>
           <div>
             {login.loading ? (
@@ -163,7 +161,7 @@ export default function BasicTextFields() {
               </Button>
             )}
           </div>
-        </section>
+        </LoginBottom>
       </form>
     </>
   );
