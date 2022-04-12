@@ -8,7 +8,7 @@ import modalStyle from "./modal.module.css"
 //components
 import ModalContent from "./modalcontent/modalcontent"
 //interface 
-import {errorInterface} from "./modalcontent/modalcontent"
+
 
 
 const style = {
@@ -20,46 +20,22 @@ const style = {
   bgcolor: 'background.paper',
   boxShadow: 24,
   p: 4,
-  height:300
+  height:350
 };
 
 export default function BasicModal() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => {
-    setOpen(false)
-    setRegCount(1)
-      setShowSubmitBtn(false);
-  }
-  const [showSubmitBtn,setShowSubmitBtn] = useState(false)
-  const [regStage,setRegStage] = useState("Email")
-  const [regCount,setRegCount] =  useState(1)
-
+  const handleClose = () => setOpen(false)
+  
   
 
-  const modalContentHandler = (): void => {
-    setRegCount((prevStage) => prevStage+1);
-    if (regCount === 2) {
-      setRegStage('confirmEmail');
-    } else if (regCount === 3) {
-      setRegStage('yourdetails');
-         setShowSubmitBtn(true);
-    } else if (regCount === 4) {
-      setRegStage('password');
-   
-    }
+ 
 
 
-
-  };
-
-  const approveNext = (errorObj: errorInterface) => {
-    console.log('my error', errorObj);
-  };
 
   
-
-  return (
+return (
     <div className={modalStyle.modalWrapper}>
       <Button className={modalStyle.modalSignupBtn} onClick={handleOpen}>
         Sign up
@@ -71,44 +47,11 @@ export default function BasicModal() {
         aria-describedby='modal-modal-description'
       >
         <Box sx={style}>
-          {regCount === 2 ? (
-            <div className={modalStyle.modalConfirmWrapper}>
-              <h3>Confirm your email</h3>
-              <p>Please enter the code we sent to ope11@gmail.com</p>
-            </div>
-          ) : null}
-          <ModalContent
-            stage={regCount}
-            approveNext={approveNext}
-          ></ModalContent>
-          {regCount === 2 ? (
-            <section className={modalStyle.modalResendLnk}>
-              <a href='#'>
-                Didn't receive an email or something went wrong? Resend code
-              </a>
-            </section>
-          ) : null}
-          {showSubmitBtn === false ? (
-            <Button
-              className={modalStyle.modalNextBtn}
-              sx={{
-                m: 1,
-                color: '#808080',
-              }}
-              variant='text'
-              onClick={modalContentHandler}
-            >
-              NEXT
-            </Button>
-          ) : (
-            <Button
-              className={modalStyle.modalSubmitBtn}
-              onClick={handleClose}
-              variant='text'
-            >
-              Submit
-            </Button>
-          )}
+        
+       <ModalContent></ModalContent>
+       
+         
+         
         </Box>
       </Modal>
     </div>

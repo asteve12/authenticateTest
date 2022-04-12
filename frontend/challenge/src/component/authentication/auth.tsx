@@ -8,18 +8,18 @@ import LoginComp from "./login/login"
 
 function auth() {
     return (
-      <main className={style.authMain}>
-        <section className={style.authMainSignup}>
-          <Modal></Modal>
-        </section>
-        <section className={style.authMainLogin}>
-          <p className={style.authLginText}>
-            Login
-          </p>
-          <LoginComp></LoginComp>
-
-        </section>
-      </main>
+      <>
+        <main className={style.authMain}>
+          <section className={style.authMainSignup}>
+            <Modal></Modal>
+          </section>
+          <section className={style.authMainLogin}>
+            <p className={style.authLginText}>Login</p>
+            <LoginComp></LoginComp>
+          </section>
+        </main>
+        
+      </>
     );
 }
 

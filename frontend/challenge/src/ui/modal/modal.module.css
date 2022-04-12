@@ -2,6 +2,12 @@
     width:100%
 }
 
+.errorMsg{
+    color:red;
+    font-size:15px
+
+}
+
 
 
 .modalSignupBtn{
@@ -18,11 +24,7 @@ border-radius:30px !important
 }
 
 
-.modalNextBtn:hover{
-      background-color:rgba(0,0,0,0.03) !important;
-   
 
-}
 .modalConfirmWrapper{
      margin-left:4px;
     
@@ -54,8 +56,3 @@ border-radius:30px !important
 
 }
 
-.modalSubmitBtn{
-    background-color:#2E69FF !important;
-    color: white !important;
-    margin-left: 10px !important;
-}
