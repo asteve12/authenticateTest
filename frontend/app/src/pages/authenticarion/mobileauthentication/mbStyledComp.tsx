@@ -38,6 +38,7 @@ const MbauthContent = styled.main`
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1000;
 `;
 
 const MbauthDetails = styled.div`
@@ -49,6 +50,7 @@ const HeaderText = styled.div`
   text-align: center;
   margin: 0px;
   color: white;
+  
 `;
 
 const HeaderPara = styled.div`
@@ -56,6 +58,7 @@ const HeaderPara = styled.div`
   margin: 0px;
   margin-bottom: 15px;
   color: white;
+  z-index:400
 `;
 
 const MbauthLinkWrapper = styled.div`

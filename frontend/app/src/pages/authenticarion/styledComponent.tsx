@@ -24,7 +24,7 @@ const AuthPage = styled.div`
 
 
 const AuthCont = styled.section`
-  height: 70vh;
+  height: auto;
   background-color: white;
   padding: 10px;
   min-width: 45%;

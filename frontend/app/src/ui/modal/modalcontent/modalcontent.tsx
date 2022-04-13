@@ -1,7 +1,7 @@
 import  React,{useState} from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
+
 import {useFormik} from "formik"
 import {useDispatch,useSelector} from "react-redux"
 import MenuItem from '@mui/material/MenuItem';
@@ -13,8 +13,15 @@ import { ThreeCircles } from 'react-loader-spinner';
 
 //actions
 import {signUpUser} from "../../../redux/reducer"
-//styles 
-import modalStyle from "./modalcontent.module.css"
+
+import {
+  ErrorMsg,
+  ModalNextBtn,
+  ModalSubmitBtn,
+  ModalLabel,
+  ConfirmText,
+} from './mdcontStyled';
+
  export interface errorInterface {
    name?: string;
    email?: string;
@@ -107,10 +114,10 @@ export default function BasicTextFields() {
     },
     validate,
     onSubmit: (values) => {
-      alert("")
+    
       dispatchSignup(signUpUser(values));
 
-      console.log("my values",values)
+    
     },
   });
   if (showNextForm.firstForm) {
@@ -133,7 +140,7 @@ export default function BasicTextFields() {
           onBlur={formObj.handleBlur}
         />
         {formObj.errors.name && formObj.touched.name ? (
-          <div className={modalStyle.errorMsg}>{formObj.errors.name}</div>
+          <ErrorMsg>{formObj.errors.name}</ErrorMsg>
         ) : null}
         <TextField
           sx={{ width: '100%' }}
@@ -145,48 +152,16 @@ export default function BasicTextFields() {
           onBlur={formObj.handleBlur}
         />
         {formObj.errors.email && formObj.touched.email ? (
-          <div className={modalStyle.errorMsg}>{formObj.errors.email}</div>
+          <ErrorMsg>{formObj.errors.email}</ErrorMsg>
         ) : null}
-        {/* <div>
-          <FormControl>
-            <InputLabel id='demo-multiple-name-label'>role</InputLabel>
-            <Select
-              labelId='demo-multiple-name-label'
-              id='role'
-              name='role'
-              onChange={formObj.handleChange}
-              onBlur={formObj.handleBlur}
-              value={formObj.values.role}
-              input={<OutlinedInput label='role' />}
-              MenuProps={MenuProps}
-              sx={{
-                '& legend': {
-                  border: 0,
-                  outline: 0,
-                  display: 'none',
-                },
-              }}
-            >
-              {role.map((role) => (
-                <MenuItem key={role} value={role}>
-                  {role}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-
-          {formObj.errors.role && formObj.touched.role ? (
-            <div className={modalStyle.errorMsg}>{formObj.errors.role}</div>
-          ) : null}
-        </div> */}
+      
         <Box sx={{ minWidth: 120 }}>
           <FormControl fullWidth>
-            <InputLabel
+            <ModalLabel
               id='demo-simple-select-label'
-              className={modalStyle.modalLabel}
             >
               role
-            </InputLabel>
+            </ModalLabel>
             <Select
               labelId='role'
               name='role'
@@ -201,11 +176,10 @@ export default function BasicTextFields() {
           </FormControl>
         </Box>
         {formObj.errors.role && formObj.touched.role ? (
-          <div className={modalStyle.errorMsg}>{formObj.errors.role}</div>
+          <ErrorMsg>{formObj.errors.role}</ErrorMsg>
         ) : null}
 
-        <Button
-          className={modalStyle.modalNextBtn}
+        <ModalNextBtn
           sx={{
             m: 1,
             color: '#808080',
@@ -228,7 +202,7 @@ export default function BasicTextFields() {
           }
         >
           NEXT
-        </Button>
+        </ModalNextBtn>
       </Box>
     );
   } else if (showNextForm.secondForm) {
@@ -242,6 +216,7 @@ export default function BasicTextFields() {
         noValidate
         autoComplete='off'
       >
+        <ConfirmText>enter the six digits code sent to your email</ConfirmText>
         <TextField
           sx={{ width: '100%' }}
           id='confirm'
@@ -250,15 +225,12 @@ export default function BasicTextFields() {
           onChange={formObj.handleChange}
           value={formObj.values.confirm}
           onBlur={formObj.handleBlur}
-         
-          
         />
         {formObj.errors.confirm && formObj.touched.confirm ? (
-          <div className={modalStyle.errorMsg}>{formObj.errors.confirm}</div>
+          <ErrorMsg>{formObj.errors.confirm}</ErrorMsg>
         ) : null}
 
-        <Button
-          className={modalStyle.modalNextBtn}
+        <ModalNextBtn
           sx={{
             m: 1,
             color: '#808080',
@@ -279,7 +251,7 @@ export default function BasicTextFields() {
           }
         >
           NEXT
-        </Button>
+        </ModalNextBtn>
       </Box>
     );
   } else if (showNextForm.thirdForm) {
@@ -302,7 +274,7 @@ export default function BasicTextFields() {
           onBlur={formObj.handleBlur}
         />
         {formObj.errors.username && formObj.touched.username ? (
-          <div className={modalStyle.errorMsg}>{formObj.errors.username}</div>
+          <ErrorMsg>{formObj.errors.username}</ErrorMsg>
         ) : null}
         <TextField
           sx={{ width: '100%' }}
@@ -314,7 +286,7 @@ export default function BasicTextFields() {
           onBlur={formObj.handleBlur}
         />
         {formObj.errors.contact && formObj.touched.contact ? (
-          <div className={modalStyle.errorMsg}>{formObj.errors.contact}</div>
+          <ErrorMsg>{formObj.errors.contact}</ErrorMsg>
         ) : null}
         <TextField
           id='profilePics'
@@ -325,13 +297,10 @@ export default function BasicTextFields() {
           onBlur={formObj.handleBlur}
         />
         {formObj.errors.profilePics && formObj.touched.profilePics ? (
-          <div className={modalStyle.errorMsg}>
-            {formObj.errors.profilePics}
-          </div>
+          <ErrorMsg>{formObj.errors.profilePics}</ErrorMsg>
         ) : null}
 
-        <Button
-          className={modalStyle.modalNextBtn}
+        <ModalNextBtn
           sx={{
             m: 1,
             color: '#808080',
@@ -354,7 +323,7 @@ export default function BasicTextFields() {
           }
         >
           NEXT
-        </Button>
+        </ModalNextBtn>
       </Box>
     );
   } else if (showNextForm.fourthForm) {
@@ -378,7 +347,7 @@ export default function BasicTextFields() {
             onBlur={formObj.handleBlur}
           />
           {formObj.errors.password && formObj.touched.password ? (
-            <div className={modalStyle.errorMsg}>{formObj.errors.password}</div>
+            <ErrorMsg>{formObj.errors.password}</ErrorMsg>
           ) : null}
         </Box>
 
@@ -390,18 +359,15 @@ export default function BasicTextFields() {
             ariaLabel='three-circles-rotating'
           />
         ) : (
-          <Button
-            className={modalStyle.modalSubmitBtn}
+          <ModalSubmitBtn
             variant='text'
             type='submit'
             disabled={formObj.values.password !== '' ? false : true}
           >
             Submit
-          </Button>
+          </ModalSubmitBtn>
         )}
-        {signup.errorMsg ? (
-          <div className={modalStyle.errorMsg}>{signup.errorMsg}</div>
-        ) : null}
+        {signup.errorMsg ? <ErrorMsg>{signup.errorMsg}</ErrorMsg> : null}
       </form>
     );
   }

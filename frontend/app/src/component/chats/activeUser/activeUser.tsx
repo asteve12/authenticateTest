@@ -1,12 +1,12 @@
 import React from 'react'
 
-
-function button() {
+function activeUser() {
     return (
         <div>
+            active user
             
         </div>
     )
 }
 
-export default button
+export default activeUser

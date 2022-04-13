@@ -2,23 +2,31 @@ import {createSlice,createAsyncThunk} from "@reduxjs/toolkit"
 import forwardSignUp from "../axios/axios"
 
 const signUpUser = createAsyncThunk("signup",async(userDetail:any)=>{
-  const user = forwardSignUp.post('/api/user', userDetail)
-  .then((response)=>{
-    
-       return {
-         status: true,
-         errorMsg: response,
-       };
-  })
-  .catch((error)=>{
-    
+
+  const {email,username,password,role} = userDetail;
+
+  const userInfo = {
+    email,
+    username,
+    password,
+    role,
+    file: userDetail.profilePics,
+  };
+    console.log(userInfo);
+  const user = forwardSignUp
+    .post('/api/user', userInfo)
+    .then((response) => {
+      return {
+        status: true,
+        errorMsg: response,
+      };
+    })
+    .catch((error) => {
       return {
         status: false,
         errorMsg: error,
       };
-
-
-  })
+    });
 
   return user;
     // console.log('dispatchadduser', userDetail);

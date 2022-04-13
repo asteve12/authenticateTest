@@ -3,11 +3,12 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-//styles 
-import modalStyle from "./modal.module.css"
+
 //components
 import ModalContent from "./modalcontent/modalcontent"
 //interface 
+
+import { ModalWrapper, ModalSignupBtn } from './modalStyledComp';
 
 
 
@@ -36,24 +37,18 @@ export default function BasicModal() {
 
   
 return (
-    <div className={modalStyle.modalWrapper}>
-      <Button className={modalStyle.modalSignupBtn} onClick={handleOpen}>
-        Sign up
-      </Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby='modal-modal-title'
-        aria-describedby='modal-modal-description'
-      >
-        <Box sx={style}>
-        
-       <ModalContent></ModalContent>
-       
-         
-         
-        </Box>
-      </Modal>
-    </div>
-  );
+  <ModalWrapper>
+    <ModalSignupBtn onClick={handleOpen}>Sign up</ModalSignupBtn>
+    <Modal
+      open={open}
+      onClose={handleClose}
+      aria-labelledby='modal-modal-title'
+      aria-describedby='modal-modal-description'
+    >
+      <Box sx={style}>
+        <ModalContent></ModalContent>
+      </Box>
+    </Modal>
+  </ModalWrapper>
+);
 }

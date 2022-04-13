@@ -1,12 +1,11 @@
 import React from 'react'
 
-
-function button() {
+function chatCont() {
     return (
         <div>
-            
+            chatcontainer
         </div>
     )
 }
 
-export default button
+export default chatCont
