@@ -20,7 +20,7 @@ function main() {
         <MainBdy>
           <MainBdyCont>
             <EditBtnWrapper>
-              <Link to='/question'>
+              <Link to='/Chats'>
                 <Button variant='text'>Ask Question</Button>
               </Link>
 

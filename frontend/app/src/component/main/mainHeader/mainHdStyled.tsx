@@ -11,26 +11,9 @@ const MainHeader = styled.div`
 
 `;
 
-const ProfileName = styled.div`
-align-self: center;
 
-`
 
-const ProfileCard = styled.div`
-  width: 100%;
-  height: 50px;
-  background-color: white;
-  box-sizing: border-box;
-  padding-left: 5%;
-  padding-right: 5%;
-  a{
-    text-decoration:none
-  }
-  display:flex;
-  justify-content: space-between;
-  box-sizing: border-box;
-  padding-top:10px
-`;
+
 
 const MainHeadWrapper = styled.div`
   width: 100%;
@@ -54,20 +37,14 @@ const MainBdyHeader = styled.h2`
   } ;
 `;
 
-const ProfilePics = styled.div`
-  width: 70px;
-  height: 70px;
-  border-radius: 200px;
-  background-color: white;
-  border: solid 3px #2c5881;
-`;
+
 
 export {
-  ProfilePics,
+
   MainHeader,
-  ProfileCard,
+
   MainHeadWrapper,
   MainBdy,
   MainBdyHeader,
-  ProfileName,
+  
 };

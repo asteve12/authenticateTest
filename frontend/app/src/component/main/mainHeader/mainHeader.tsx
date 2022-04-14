@@ -1,25 +1,21 @@
 import React from 'react'
 import {
   MainHeader,
-  ProfileCard,
   MainHeadWrapper,
   MainBdy,
   MainBdyHeader,
-  ProfilePics,
-  ProfileName,
 } from './mainHdStyled';
 import {Link} from "react-router-dom"
+import ProfileCard from "./profileCard/profileCard"
 
-function mainHeader() {
+
+
+function MnHeader() {
+
     return (
       <MainHeadWrapper>
         <MainHeader>
-          <ProfileCard>
-            <Link to='/profile'>
-              <ProfilePics></ProfilePics>
-            </Link>
-            <ProfileName>Akinfolarin stephen</ProfileName>
-          </ProfileCard>
+          <ProfileCard></ProfileCard>
         </MainHeader>
         <MainBdy>
           <MainBdyHeader>
@@ -30,4 +26,4 @@ function mainHeader() {
     );
 }
 
-export default mainHeader
+export default MnHeader;

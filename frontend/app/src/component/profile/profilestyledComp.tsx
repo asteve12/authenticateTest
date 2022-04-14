@@ -49,7 +49,7 @@ const BgImg = styled.div`
   }
 `;
 
-const BgPics = styled.div`
+const BgPics = styled.img`
   background: #f2f3f8;
   width: 209px;
   height: 209px;

@@ -29,61 +29,55 @@ interface valueInterface{
 }
 
 export default function BasicTextFields() {
-     const [values, setValues] = React.useState({showPassword: false});
-     const dispatchlogUserIn = useDispatch()
-     //@ts-ignore
-     const login = useSelector(state=> state.login)
+  const [values, setValues] = React.useState({ showPassword: false });
+  const dispatchlogUserIn = useDispatch();
+  //@ts-ignore
+  const login = useSelector((state) => state.login);
+  //@ts-ignore
+  const authenticate = useSelector((state) => state.authenticate);
 
-    const handleClickShowPassword = () => {
-      setValues({
-        ...values,
-        showPassword: !values.showPassword
-      });
-    };
+  const handleClickShowPassword = () => {
+    setValues({
+      ...values,
+      showPassword: !values.showPassword,
+    });
+  };
 
-     const handleMouseDownPassword = (
-       event: React.MouseEvent<HTMLButtonElement>
-     ) => {
-       event.preventDefault();
-     };
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault();
+  };
 
-     const validate = (value:valueInterface)=>{
-       const errors: errorInterface = {};
-        if (!value.email) {
-         errors.email = 'required';
-       }
-       else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value.email)
-    ) {
+  const validate = (value: valueInterface) => {
+    const errors: errorInterface = {};
+    if (!value.email) {
+      errors.email = 'required';
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value.email)) {
       errors.email = 'Invalid email address';
     }
 
-      if (!value.password) {
-        errors.password = 'required';
-      }
-       
-    
+    if (!value.password) {
+      errors.password = 'required';
+    }
+
     return errors;
+  };
 
-     }
-
-      const formObj = useFormik({
-        initialValues:{
-          email:"",
-          password:"" },
-          validate,
-          onSubmit:(value)=>{
-            dispatchlogUserIn(loginUpUser(value));
-          
-
-          }
-        
-      })
-
+  const formObj = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validate,
+    onSubmit: (value) => {
+      dispatchlogUserIn(loginUpUser(value));
+    },
+  });
 
   return (
     <>
-      {login.isVerified ? (
+      {login.isVerified | authenticate.username ? (
         <Navigate to='/main' replace={true}></Navigate>
       ) : null}
       <form onSubmit={formObj.handleSubmit}>
@@ -135,7 +129,7 @@ export default function BasicTextFields() {
 
         <LoginBottom>
           <div>
-            <ForgetPassLink to="/" >Forgot password?</ForgetPassLink>
+            <ForgetPassLink to='/'>Forgot password?</ForgetPassLink>
           </div>
           <div>
             {login.loading ? (

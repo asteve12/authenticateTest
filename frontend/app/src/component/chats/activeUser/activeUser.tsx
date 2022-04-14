@@ -1,12 +1,11 @@
 import React from 'react'
+import { ActiveUserCont, UserPics } from './activeStyled';
 
 function activeUser() {
-    return (
-        <div>
-            active user
-            
-        </div>
-    )
+    return <ActiveUserCont>
+        <UserPics></UserPics>
+
+    </ActiveUserCont>;
 }
 
 export default activeUser

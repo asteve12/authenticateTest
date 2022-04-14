@@ -39,7 +39,24 @@ const login = createSlice({
     id:""
   },
 
-  reducers: {},
+  reducers: {
+    clearState:(state)=>{
+       return {
+         name: '',
+         email: '',
+         username: '',
+         contacts: '',
+         file: '',
+         password: '',
+         loading: false,
+         errorMsg: '',
+         role: '',
+         isVerified: false,
+         profilePics: '',
+         id: '',
+       };
+    }
+  },
   extraReducers: {
     //@ts-ignore
     [loginUpUser.pending]: (state, payload) => {
@@ -52,6 +69,7 @@ const login = createSlice({
       const { payload } = detail;
       if (payload.status) {
         state.loading = false;
+     
         const { email, password } = detail.meta.arg;
         const users = payload.data;
         for(let eachUser of users){
@@ -64,6 +82,8 @@ const login = createSlice({
               break;
             }
             else{
+                 localStorage.setItem('userId', eachUser._id);
+                
               state.email = eachUser.email;
               state.password = eachUser.password;
               state.username = eachUser.username;
@@ -94,4 +114,5 @@ const login = createSlice({
 });
 
 export default login.reducer;
-export { loginUpUser };
+const clearLoginState = login.actions.clearState
+export { loginUpUser, clearLoginState };
