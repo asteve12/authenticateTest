@@ -1,5 +1,4 @@
 const express = require('express');
-const { User } = require('../models/user');
 const { Chat } = require('../models/chat');
 const auth = require('../middleware/auth');
 
@@ -13,13 +12,11 @@ router.get('/chat/:id', auth, async (req, res) => {
 })
 
 router.post('/chat', auth, async (req, res) => {
-  const { user: receiver, message } = req.body
-  let user = await User.findOne({ room: receiver });
-  if (!user) return res.status(404).send('Receiver not found');
+  const { room, message } = req.body
 
   let chat = new Chat({
     message,
-    room: user,
+    room,
     from: req.user
   })
 
