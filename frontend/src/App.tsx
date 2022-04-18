@@ -36,7 +36,7 @@ function App() {
      let userId = localStorage.getItem('userToken');
 
      console.log('tokenite', userId);
-     if (userId) dispatchLoginUser(loginUpUser({ type:"makeLoginPersistent"}));
+     dispatchLoginUser(loginUpUser({ type:"makeLoginPersistent"}));
      
    }, [dispatchLoginUser]);
   
