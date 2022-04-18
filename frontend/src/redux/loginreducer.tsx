@@ -89,20 +89,25 @@ const login = createSlice({
       const { payload ,meta} = detail;
       if (meta.arg.type === 'makeLoginPersistent') {
         console.log('loginmeta', detail);
+        
       const userId = localStorage.getItem('userId');
-         console.log('fullfilled', );
-     for(let eachUser of payload.user){
-           if(eachUser._id === userId ){
-             state.username = eachUser.username;
-             state.name = eachUser.name;
-             state.email = eachUser.email
-            
-            break;
-           }
+         console.log('fullfilled', userId);
+         if (!userId){
+           state.loading = false;
+           return;
+         }
+
+           for (let eachUser of payload.user) {
+             if (eachUser._id === userId) {
+               state.username = eachUser.username;
+               state.name = eachUser.name;
+               state.email = eachUser.email;
+               state.profilePics = eachUser.profileUrl;
+
+               break;
+             }
              state.loading = false;
-          
-           
-     }
+           }
 return state;
 
 
