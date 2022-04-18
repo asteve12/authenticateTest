@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react';
+import React,{useEffect} from 'react';
 import './App.css';
 //components
 import Authentication from "./pages/authenticarion/authentication"
@@ -8,7 +8,7 @@ import MainPage from "./pages/main/main"
 import Profile from "./pages/profile/profile"
 import Chats from "./pages/chat/chat"
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { authenticateUser } from './redux/authenticate';
+
 import {useDispatch,useSelector} from "react-redux"
 import  {Navigate} from "react-router-dom"
 
@@ -16,8 +16,7 @@ import { Circles } from 'react-loader-spinner';
 import Verify from "./pages/verifyPage/verify"
 ;
 
-import ResetPass from "./pages/resetPassword/passwordReset"
-import ResetLink from "./pages/resetPassword/resquestReset/requestRest"
+
 
 import { loginUpUser } from './redux/loginreducer';
 
@@ -26,9 +25,8 @@ function App() {
   
   //@ts-ignore
   const loginUser = useSelector((state) => state.login);
-  //@ts-ignore
-  const authUser = useSelector((state) => state.authenticate);
-  const [isUserAuth,setIsUserAuth] = useState(false)
+  
+
 
  
 
