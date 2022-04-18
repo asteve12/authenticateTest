@@ -115,7 +115,7 @@ else if (authUser.username !== "") {
             }
           ></Route>
           <Route
-            path='/main'
+            path='main'
             element={
               loginUser.username || authUser.username !== '' ? (
                 <MainPage />
@@ -157,6 +157,7 @@ else{
      <div className='App'>
        <BrowserRouter>
          <Routes>
+           {/* <Route path='*' element={<Navigate to=''></Navigate>}></Route> */}
            <Route path='/' element={<Authentication />}></Route>
            <Route path='/' element={<MbLogin />}></Route>
 
@@ -169,7 +170,6 @@ else{
              path='/auth/passwordReset/:id/:userId'
              element={<ResetPass></ResetPass>}
            ></Route>
-           <Route path="*" element={<Navigate to=""></Navigate>}></Route>
          </Routes>
        </BrowserRouter>
      </div>
