@@ -4,7 +4,7 @@ import login from "./loginreducer"
 import authenticate from "./authenticate"
 import verifyTk from "./verifyEmail"
 import sendMessage from "./sendChat"
-import updateBlog from "./updatetext"
+import updateBlog from "./updateBlog"
 
 const store = configureStore({
   reducer: {

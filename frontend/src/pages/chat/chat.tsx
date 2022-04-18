@@ -25,6 +25,9 @@ function Chat() {
   //   dispatchGetMsg(sendChats({type:"getMsg"}));
 
   // },[])
+  useEffect(() => {
+    window.scrollTo(0, document.body.scrollHeight);
+  }, [obtainUserMessage]);
  
 
      return (
@@ -37,7 +40,7 @@ function Chat() {
          </ProfCardWrapper>
          <ChatDetail>
            <ChatCompWrapper>
-             {obtainUserMessage.message.data.map((eachMsg: any) => {
+             {obtainUserMessage.message.map((eachMsg: any) => {
                if (!eachMsg.message) {
                  return;
                }

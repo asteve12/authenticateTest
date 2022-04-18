@@ -14,26 +14,35 @@ import {Navigate} from "react-router-dom"
 import { Circles } from 'react-loader-spinner';
 import Verify from "./pages/verifyPage/verify"
 import { sendChats } from './redux/sendChat';
+import {updateBlogAsync} from "./redux/updateBlog"
+import ResetPass from "./pages/resetPassword/passwordReset"
+import ResetLink from "./pages/resetPassword/resquestReset/requestRest"
+
 
 
 function App() {
   const dispatchLoginUser = useDispatch();
    const dispatchGetMsg = useDispatch();
+   const dispatchParaText = useDispatch();
   //@ts-ignore
   const loginUser = useSelector((state) => state.login);
   //@ts-ignore
   const authUser = useSelector((state) => state.authenticate);
   console.log('nhfhfhfh', authUser);
   console.log('oooo', loginUser);
+
    useEffect(() => {
      dispatchGetMsg(sendChats({ type: 'getMsg' }));
-   });
-  
-   let userId = localStorage.getItem('userId');
+     dispatchParaText(updateBlogAsync({ type: 'getMsg'}))
+      let userId = localStorage.getItem('userToken');
 
-   if (userId && !authUser.username && !authUser.logUserOut) {
-      dispatchLoginUser(authenticateUser(userId));
-   } 
+        console.log('tokenite', userId);
+        if (userId) dispatchLoginUser(authenticateUser(userId));
+        
+ 
+   },[]);
+  
+  
 
   if (authUser.loading) {
   
@@ -41,10 +50,56 @@ function App() {
    
 
   }
- 
 
 
+if (loginUser.username !== "") {
+    return (
+      <div className='App'>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<Authentication />}></Route>
+            <Route path='/login' element={<MbLogin />}></Route>
+            <Route
+              path='/signup'
+              element={
+                loginUser.username !== '' || authUser.username !== '' ? <MbSignup />: null
+              }
+            ></Route>
+            <Route
+              path='/main'
+              element={
+                loginUser.username || authUser.username !== '' ? (
+                  <MainPage />
+                ) : (
+                  <div>
+                    {/* <Navigate to='/' replace={true}></Navigate> */}
+                    helloe
+                  </div>
+                )
+              }
+            ></Route>
+            <Route
+              path='/profile'
+              element={
+                loginUser.username !== '' || authUser.username !== '' ? <Profile />: null
+              }
+            ></Route>
+            <Route
+              path='/chats'
+              element={
+                loginUser.username !== '' || authUser.username !== '' ? (
+                  <Chats />
+                ) : null
+              }
+            ></Route>
+            <Route path='/auth/:id' element={<Verify></Verify>}></Route>
+          </Routes>
+        </BrowserRouter>
+      </div>
+    )
 
+}
+else if (authUser.username !== "") {
   return (
     <div className='App'>
       <BrowserRouter>
@@ -54,48 +109,76 @@ function App() {
           <Route
             path='/signup'
             element={
-              loginUser.username || authUser.username ? (
+              loginUser.username !== '' || authUser.username !== '' ? (
                 <MbSignup />
-              ) : (
-                <Navigate to='/' replace={true}></Navigate>
-              )
+              ) : null
             }
           ></Route>
           <Route
             path='/main'
             element={
-              loginUser.username || authUser.username ? (
+              loginUser.username || authUser.username !== '' ? (
                 <MainPage />
               ) : (
-                <Navigate to='/' replace={true}></Navigate>
+                <div>
+                  {/* <Navigate to='/' replace={true}></Navigate> */}
+                  helloe
+                </div>
               )
             }
           ></Route>
           <Route
             path='/profile'
             element={
-              loginUser.username || authUser.username ? (
+              loginUser.username !== '' || authUser.username !== '' ? (
                 <Profile />
-              ) : (
-                <Navigate to='/' replace={true}></Navigate>
-              )
+              ) :null
             }
           ></Route>
           <Route
             path='/chats'
             element={
-              loginUser.username || authUser.username ? (
+              loginUser.username !== '' || authUser.username !== '' ? (
                 <Chats />
-              ) : (
-                <Navigate to='/' replace={true}></Navigate>
-              )
+              ) : null
             }
           ></Route>
-          <Route path='/auth/:id' element={<Verify></Verify>} ></Route>
+          <Route path='/auth/:id' element={<Verify></Verify>}></Route>
         </Routes>
       </BrowserRouter>
     </div>
   );
+}
+
+else{
+ console.log('autme', authUser);
+ console.log('autme1', loginUser.username);
+   return (
+     <div className='App'>
+       <BrowserRouter>
+         <Routes>
+           <Route path='/' element={<Authentication />}></Route>
+           <Route path='/' element={<MbLogin />}></Route>
+
+           <Route
+             path='/requestResetLink'
+             element={<ResetLink></ResetLink>}
+           ></Route>
+           <Route path='/auth/:id' element={<Verify></Verify>}></Route>
+           <Route
+             path='/auth/passwordReset/:id/:userId'
+             element={<ResetPass></ResetPass>}
+           ></Route>
+           <Route path="*" element={<Navigate to=""></Navigate>}></Route>
+         </Routes>
+       </BrowserRouter>
+     </div>
+   );
+}
+
+
+
+
 }
 
 export default App;

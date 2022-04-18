@@ -5,26 +5,28 @@ import ForwadAddMsg from "../axios/axios"
 const sendChats = createAsyncThunk("sendChat",async(message:any)=>{
     let userToken = localStorage.getItem("userToken")
     if (message.type === "getMsg"){
-        const AllMsg = ForwadAddMsg.get('/api/chat', {
+        const AllMsg = ForwadAddMsg.get('/api/chat/625bd28b89fdcde21f3ba1b4', {
           headers: {
             //@ts-ignore
             'x-auth-token': userToken,
           },
         })
-        .then((response)=>{
+          .then((response) => {
             console.log('allMsg', response);
-            return {status:true,msg:response}
+            return { status: true, msg: response };
+          })
+          .catch((error) => {
+            return { status: false, errorMsg: error.response };
+          });
 
-        }).catch((error)=>{
-             return { status: false, errorMsg: error.response };
-        })
+          return AllMsg;
 
     }
       const messageReply = ForwadAddMsg.post(
         '/api/chat',
         {
           message: message.message,
-          room: 'Friends Room',
+          room: '625bd28b89fdcde21f3ba1b4',
         },
         {
           headers: {
@@ -35,12 +37,15 @@ const sendChats = createAsyncThunk("sendChat",async(message:any)=>{
       )
         .then((response) => {
           if (response.status === 200) {
-            const chatRoomMsg = ForwadAddMsg.get('/api/chat', {
-              headers: {
-                //@ts-ignore
-                'x-auth-token': userToken,
-              },
-            })
+            const chatRoomMsg = ForwadAddMsg.get(
+              '/api/chat/625bd28b89fdcde21f3ba1b4',
+              {
+                headers: {
+                  //@ts-ignore
+                  'x-auth-token': userToken,
+                },
+              }
+            )
               .then((allRoomMessage) => {
                 console.log('my resddp', allRoomMessage);
                 return { status: true, msg: allRoomMessage };
@@ -65,7 +70,7 @@ const sendChats = createAsyncThunk("sendChat",async(message:any)=>{
 const SendChat = createSlice({
   name: 'chats',
   initialState: {
-    message: {},
+    message: [],
     errorMsg:"",
   },
   reducers: {},
@@ -74,10 +79,17 @@ const SendChat = createSlice({
     [sendChats.pending]: (state) => {},
     //@ts-ignore
     [sendChats.fulfilled]: (state, userMsg) => {
-        const { payload } = userMsg;
+    
+        const { payload,meta } = userMsg;
+           console.log('first love', userMsg)
+        if(meta.arg.type === "getMsg"){
+            console.log('first love', userMsg);
+          state.message = payload.msg.data
+        }
+
         const { status, msg } = payload;
         if(status){
-            state.message = msg;
+            state.message = msg.data;
 
         }
         else{
