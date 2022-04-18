@@ -1,4 +1,4 @@
-import { Satellite } from '@mui/icons-material';
+
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import forwardLogin from '../axios/axios';
 
@@ -115,7 +115,7 @@ return state;
       if (payload.status) {
         state.loading = false;
      
-        const { email, password } = detail.meta.arg;
+        const { email} = detail.meta.arg;
         const users = payload.user;
         for(let eachUser of users){
           console.log('eachUser.email', eachUser.email, email);
