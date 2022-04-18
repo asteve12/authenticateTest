@@ -33,7 +33,10 @@ function RequestRestLink() {
 
     const handleResetLink = (values: emailInterface) => {
         setLoading(true)
-      const resetResponse = ForwardRestReq.post('/api/auth/requestReset', {
+
+
+
+     ForwardRestReq.post('/api/auth/requestReset', {
         email: values.email,
       }).then((response)=>{
           console.log('my-res', response);
@@ -42,7 +45,7 @@ function RequestRestLink() {
                setLoading(false);
             }
       }).catch((error)=>{
-          console.log('sent request LInk', error)
+          console.log('sent request LInk', error.reponse)
              setLinkSentSucc(error.response.data);
                setLoading(false);
           

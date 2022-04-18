@@ -101,10 +101,13 @@ const LinkCont = styled.div`
   border: 1px solid #f2f2f2;
   box-sizing: border-box;
   border-radius: 3px;
+
   @media (max-width: 400px) {
     margin-left: 0px;
-    width: auto;
+    width: 100%;
     border: none;
+    display: flex;
+    justify-content: center;
   }
   a {
     width: 100%;
@@ -117,16 +120,17 @@ const LinkCont = styled.div`
     align-items: center;
     border-bottom: 1px solid #f2f2f2;
     padding-left: 10px;
+    display: flex;
+    justify-content: center;
+
     @media (max-width: 400px) {
-    
-        width: 150px;
-        margin-left: auto;
-        margin-right: auto;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: none;
-      
+      width: 150px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
     }
   }
 `;

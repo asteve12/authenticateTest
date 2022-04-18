@@ -4,7 +4,7 @@ import {useSelector,useDispatch} from "react-redux"
 import {Bars} from "react-loader-spinner"
 import {LoaderWrapper} from "./verifyComp"
 import {verifyTk} from "../../redux/verifyEmail"
-import { NavLink, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 
 
 function Verify() {
@@ -15,19 +15,18 @@ function Verify() {
      const routes = useNavigate();
     console.log(id,"my token");
 
-    useEffect(()=>{
-        dispatchVerifyTk(verifyTk(id));
+    useEffect(() => {
+      dispatchVerifyTk(verifyTk(id));
+    }, [dispatchVerifyTk, id]);
 
-    },[])
+    // const resetToken = ()=>{
+    //     const resetDetail = {
+    //         type:"reset",
+    //         token:id
+    //     }
+    //      dispatchVerifyTk(verifyTk(resetDetail));
 
-    const resetToken = ()=>{
-        const resetDetail = {
-            type:"reset",
-            token:id
-        }
-         dispatchVerifyTk(verifyTk(resetDetail));
-
-    }
+    // }
 
 
     if (verifyInfo.loading) {
