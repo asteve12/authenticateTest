@@ -3,7 +3,14 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import forwardLogin from '../axios/axios';
 
 const loginUpUser = createAsyncThunk('login', async (userDetail: any) => {
-  console.log('userlogin', userDetail);
+  if (userDetail.type === "makeLoginPersistent"){
+      let users = forwardLogin.get('/api/user').then((reply) => {
+        return { status: true, user: reply.data };
+      });
+      return users;
+    
+
+  } console.log('userlogin', userDetail);
   const user = forwardLogin
     .post('/api/auth', userDetail)
     .then((response) => {
@@ -43,7 +50,7 @@ const login = createSlice({
     contacts: '',
     file: '',
     password: '',
-    loading: false,
+    loading: true,
     errorMsg: '',
     role:"",
     isVerified:false,
@@ -78,8 +85,28 @@ const login = createSlice({
     },
     //@ts-ignore
     [loginUpUser.fulfilled]: (state, detail) => {
-      console.log('fullfilled', detail);
-      const { payload } = detail;
+   
+      const { payload ,meta} = detail;
+      if (meta.arg.type === 'makeLoginPersistent') {
+        console.log('loginmeta', detail);
+      const userId = localStorage.getItem('userId');
+         console.log('fullfilled', );
+     for(let eachUser of payload.user){
+           if(eachUser._id === userId ){
+             state.username = eachUser.username;
+             state.name = eachUser.name;
+             state.email = eachUser.email
+            
+            break;
+           }
+             state.loading = false;
+          
+           
+     }
+return state;
+
+
+      }
       if (payload.status) {
         state.loading = false;
      
