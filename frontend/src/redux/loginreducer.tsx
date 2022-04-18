@@ -103,6 +103,7 @@ const login = createSlice({
                state.name = eachUser.name;
                state.email = eachUser.email;
                state.profilePics = eachUser.profileUrl;
+               state.role = eachUser.role
 
                break;
              }

@@ -5,6 +5,8 @@ import Button from '@mui/material/Button';
 const ModalWrapper = styled.div`
    width:100%;
    height:auto;
+   justify-content:center
+   
 
 `
 
@@ -37,7 +39,7 @@ const CreateUserBtn = styled(Button)`
   border: none;
   cursor: pointer;
   @media (max-width: 400px) {
-    width: 100px;
+    width: 100px !important;
     margin-left: auto;
     margin-right: auto;
     display: flex;
