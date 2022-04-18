@@ -12,6 +12,7 @@ import {
 import Button from '@mui/material/Button';
 import {Link} from "react-router-dom"
 import {useSelector} from "react-redux"
+import { AnyARecord } from 'dns';
 
 
 function Main() {
@@ -30,8 +31,18 @@ function Main() {
 
               <EditBtn></EditBtn>
             </EditBtnWrapper>
+            {
+              BlogText.text.map((eachText:any)=>{
+                if(eachText.text){
+           return <MainPara>{eachText.text}</MainPara>;
+                }
 
-            <MainPara>{BlogText.text}</MainPara>
+             
+              })
+
+            }
+
+           
           </MainBdyCont>
         </MainBdy>
       </MainCont>

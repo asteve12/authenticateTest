@@ -9,6 +9,10 @@ import { sendChats} from "../../../redux/sendChat"
 function MessageBox() {
     const dispatchMsg = useDispatch()
     
+   const handleReset = ()=>{
+     formObj.resetForm()
+
+   }
 
     const formObj = useFormik({
         initialValues:{
@@ -16,6 +20,7 @@ function MessageBox() {
         },
         onSubmit:(values)=>{
             dispatchMsg(sendChats(values));
+            handleReset()
 
         }
     })

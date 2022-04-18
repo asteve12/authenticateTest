@@ -18,6 +18,7 @@ import {
 import {useDispatch} from "react-redux"
 import {clearState} from "../../redux/authenticate"
 import {clearLoginState} from "../../redux/loginreducer"
+import {useNavigate} from "react-router-dom"
 
 
 const ProfileComp: React.FC = (props) => {
@@ -29,6 +30,7 @@ const ProfileComp: React.FC = (props) => {
   const LoginUser = useSelector((state) => state.login);
   //@ts-ignore
   const authUser = useSelector((state) => state.authenticate);
+  const changeRoute = useNavigate()
 
   return (
     <>
@@ -65,6 +67,7 @@ const ProfileComp: React.FC = (props) => {
               onClick={() => {
                 dispatchLogout(clearState());
                 dispatchLogout(clearLoginState());
+                changeRoute("/")
               }}
             >
               Log Out

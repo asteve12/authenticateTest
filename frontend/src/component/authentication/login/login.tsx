@@ -129,7 +129,9 @@ export default function BasicTextFields() {
 
         <LoginBottom>
           <div>
-            <ForgetPassLink to='/'>Forgot password?</ForgetPassLink>
+            <ForgetPassLink to='/requestResetLink'>
+              Forgot password?
+            </ForgetPassLink>
           </div>
           <div>
             {login.loading ? (

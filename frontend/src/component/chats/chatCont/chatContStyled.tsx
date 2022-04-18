@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 
 const ChaCont = styled.section`
-width:70%;
+width:100%;
 max-width:100%;
 margin-bottom:5px;
 

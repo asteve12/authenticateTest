@@ -6,7 +6,7 @@ import Modal from '@mui/material/Modal';
 import { InputText, SubmitBtn } from './editModalStyledComp';
 import {useFormik} from "formik"
 import {useSelector,useDispatch} from "react-redux"
-import {updateBlogAsync} from "../../redux/updatetext"
+import {updateBlogAsync} from "../../redux/updateBlog"
 
 const style = {
   position: 'absolute' as 'absolute',

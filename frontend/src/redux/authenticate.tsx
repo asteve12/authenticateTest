@@ -9,7 +9,9 @@ const authenticateUser = createAsyncThunk('authenticate',async(userId:any)=>{
 
     }
     else{
-       let userId =  localStorage.getItem("userId")
+      
+       let userId = localStorage.getItem('userId');
+       console.log('dispatchAuth', userId);
        const user = forwardAuth.get("/api/user").then((response)=>{
       
            const currentUser = response.data
@@ -86,9 +88,10 @@ const Authenticate = createSlice({
           state.username = payload.username;
           state.profilePics = payload.profileUrl;
           state.role = payload.role
+            console.log('authenticate', state.username);
       }
       state.loading = false;
-      console.log('authenticate', payload);
+    
     },
     //@ts-ignore
     [authenticateUser.rejected]: (state, payload) => {
