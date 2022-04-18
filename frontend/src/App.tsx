@@ -8,6 +8,8 @@ import MainPage from "./pages/main/main"
 import Profile from "./pages/profile/profile"
 import Chats from "./pages/chat/chat"
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import PasswordReset from "./pages/resetPassword/passwordReset"
+import RequestReset from "./pages/resetPassword/resquestReset/requestRest"
 
 import {useDispatch,useSelector} from "react-redux"
 import  {Navigate} from "react-router-dom"
@@ -76,6 +78,14 @@ function App() {
              element={loginUser.username !== '' ? <Chats /> : null}
            ></Route>
            <Route path='/auth/:id' element={<Verify></Verify>}></Route>
+           <Route
+             path='/auth/passwordReset/:id/:userId'
+             element={<PasswordReset></PasswordReset>}
+           ></Route>
+           <Route
+             path='/requestResetLink'
+             element={<RequestReset></RequestReset>}
+           ></Route>
          </Routes>
        </BrowserRouter>
      </div>
