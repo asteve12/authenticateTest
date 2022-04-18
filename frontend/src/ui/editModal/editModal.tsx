@@ -26,15 +26,24 @@ export default function EditModal() {
   const handleClose = () => setOpen(false);
   const dispatchUpdateText = useDispatch()
 
+ const formResetHandler = () => {
+   formObj.resetForm();
+ };
+
+
   const formObj = useFormik({
     initialValues:{
       text:""
     },
     onSubmit:(values)=>{
       dispatchUpdateText(updateBlogAsync(values));
+      formResetHandler()
 
     }
   })
+
+ 
+
 
   return (
     <div>
