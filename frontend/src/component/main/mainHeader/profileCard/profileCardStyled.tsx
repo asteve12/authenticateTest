@@ -38,10 +38,18 @@ const IconsWrapper = styled.div`
   display: flex;
   align-items: center;
   width: 50%;
-  margin-left: auto;
-  margin-right: auto;
-  justify-content: center;
 
+  justify-content: center;
+  @media (max-width: 700px) {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  @media (max-width: 500px) {
+    display: none;
+  }
+  @media (min-width: 500px) {
+    display: flex;
+  }
 `;
 
 const HomeIcons = styled(BsFillChatRightFill)`
@@ -49,7 +57,7 @@ const HomeIcons = styled(BsFillChatRightFill)`
   margin: 10%;
   color: #5976d2;
   @media(max-width:700px){
-    margin:3%
+    margin:0px
   }
 `;
 
@@ -58,7 +66,7 @@ const ChatIcons = styled(AiFillHome)`
   margin: 10%;
   color: #5976d2;
   @media (max-width: 700px) {
-    margin: 3%;
+    margin: 0px;
   }
 `;
 
@@ -67,6 +75,15 @@ margin:100px;
 text-decoration: none;
 
 `
+
+const MbMenuWrapper = styled.div`
+  @media (max-width: 500px) {
+    display: block;
+  };
+  @media(min-width:500px) {
+    display: none;
+  }
+`;
 
 
 
@@ -81,4 +98,5 @@ export {
   HomeIcons,
   ChatIcons,
   NavBtn,
+  MbMenuWrapper,
 };

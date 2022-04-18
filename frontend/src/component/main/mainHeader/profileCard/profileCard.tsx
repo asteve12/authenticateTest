@@ -7,9 +7,12 @@ import {
   HomeIcons,
   ChatIcons,
   NavBtn,
+  MbMenuWrapper,
 } from './profileCardStyled';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import MbMenu from "./mbMenu/mbMenu"
+
 
 
 
@@ -58,6 +61,10 @@ function ProfCard() {
           <HomeIcons></HomeIcons>
         </NavBtn>
       </IconsWrapper>
+      <MbMenuWrapper>
+
+        <MbMenu></MbMenu>
+      </MbMenuWrapper>
 
       {loginUser.username ? (
         <ProfileName>{loginUser.username}</ProfileName>

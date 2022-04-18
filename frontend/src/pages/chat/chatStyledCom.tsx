@@ -14,9 +14,10 @@ const ChatCompWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   height: 95%;
-  width:70%
+  width:70%;
+  margin-top:30px;
 
-`;
+`
 
 
 
@@ -43,7 +44,7 @@ display:flex;
 width:100%;
 justify-content: center;
 height:auto;
-padding-bottom:100px
+padding-bottom:20px
 
 `
 const LoaderWrapper = styled.div`
