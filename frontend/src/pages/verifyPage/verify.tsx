@@ -56,7 +56,7 @@ function Verify() {
         return (
           <div>
             <p>{verifyInfo.errorMsg}</p>
-            <button onClick={resetToken}>resend token</button>
+            <button onClick={() => routes('/')}>Login</button>
           </div>
         );
     }
