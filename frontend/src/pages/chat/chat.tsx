@@ -13,6 +13,7 @@ import {
 import ProfileCard from "../../component/main/mainHeader/profileCard/profileCard"
 import  MessageBox from "./messageBox/messageBox"
 import {useSelector,useDispatch} from "react-redux"
+import { sendChats } from '../../redux/sendChat';
 
 import { Bars } from 'react-loader-spinner';
 
@@ -28,6 +29,11 @@ function Chat() {
   useEffect(() => {
     window.scrollTo(0, document.body.scrollHeight);
   }, [obtainUserMessage]);
+
+  useEffect(()=>{
+dispatchGetMsg(sendChats({type:"getMsg"}));
+
+  },[])
  
 
      return (

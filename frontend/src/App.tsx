@@ -10,11 +10,11 @@ import Chats from "./pages/chat/chat"
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { authenticateUser } from './redux/authenticate';
 import {useDispatch,useSelector} from "react-redux"
-import {Navigate} from "react-router-dom"
+
 import { Circles } from 'react-loader-spinner';
 import Verify from "./pages/verifyPage/verify"
-import { sendChats } from './redux/sendChat';
-import {updateBlogAsync} from "./redux/updateBlog"
+;
+
 import ResetPass from "./pages/resetPassword/passwordReset"
 import ResetLink from "./pages/resetPassword/resquestReset/requestRest"
 
@@ -22,8 +22,7 @@ import ResetLink from "./pages/resetPassword/resquestReset/requestRest"
 
 function App() {
   const dispatchLoginUser = useDispatch();
-   const dispatchGetMsg = useDispatch();
-   const dispatchParaText = useDispatch();
+  
   //@ts-ignore
   const loginUser = useSelector((state) => state.login);
   //@ts-ignore
@@ -32,15 +31,11 @@ function App() {
   console.log('oooo', loginUser);
 
    useEffect(() => {
-     dispatchGetMsg(sendChats({ type: 'getMsg' }));
-     dispatchParaText(updateBlogAsync({ type: 'getMsg'}))
-      let userId = localStorage.getItem('userToken');
+     let userId = localStorage.getItem('userToken');
 
-        console.log('tokenite', userId);
-        if (userId) dispatchLoginUser(authenticateUser(userId));
-        
- 
-   },[]);
+     console.log('tokenite', userId);
+     if (userId) dispatchLoginUser(authenticateUser(userId));
+   }, [dispatchLoginUser]);
   
   
 
@@ -72,7 +67,7 @@ if (loginUser.username !== "") {
                   <MainPage />
                 ) : (
                   <div>
-                    {/* <Navigate to='/' replace={true}></Navigate> */}
+                  
                     helloe
                   </div>
                 )
@@ -159,7 +154,14 @@ else{
          <Routes>
            {/* <Route path='*' element={<Navigate to=''></Navigate>}></Route> */}
            <Route path='/' element={<Authentication />}></Route>
-           <Route path='/' element={<MbLogin />}></Route>
+           <Route path='/login' element={<MbLogin />}></Route>
+           <Route
+             path='/signup'
+             element={
+                <MbSignup />
+              
+             }
+           ></Route>
 
            <Route
              path='/requestResetLink'
